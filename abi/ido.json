@@ -1,0 +1,1276 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address[]",
+        "name": "whitelistedAddresses",
+        "type": "address[]"
+      }
+    ],
+    "name": "LogAddressWhitelisted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "participant",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "LogDeposit",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256[]",
+        "name": "poolFixedFee",
+        "type": "uint256[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolPercentFee",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolTokenPercentFee",
+        "type": "uint256"
+      }
+    ],
+    "name": "LogFeeChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "audit",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "auditLink",
+        "type": "string"
+      }
+    ],
+    "name": "LogPoolAuditUpdate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "poolOwner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "hardCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "softCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "presaleRate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dexCapPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dexRate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "projectTokenAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "enum IOldPool.PoolStatus",
+            "name": "status",
+            "type": "uint8"
+          },
+          {
+            "internalType": "enum IOldPool.PoolTier",
+            "name": "tier",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bool",
+            "name": "kyc",
+            "type": "bool"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct IOldPool.PoolModel",
+        "name": "model",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "startDateTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endDateTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "listDateTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAllocationPerUser",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxAllocationPerUser",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dexLockup",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "extraData",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "whitelistable",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "audit",
+            "type": "bool"
+          },
+          {
+            "internalType": "string",
+            "name": "auditLink",
+            "type": "string"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct IOldPool.PoolDetails",
+        "name": "details",
+        "type": "tuple"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolPercentFee",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolTokenPercentFee",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "vestingAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "unlockedVestingAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "firstPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "firstPeriod",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "eachPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "eachPeriod",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct IOldPool.PoolVesting",
+        "name": "vesting",
+        "type": "tuple"
+      }
+    ],
+    "name": "LogPoolCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "_extraData",
+        "type": "string"
+      }
+    ],
+    "name": "LogPoolExtraData",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isHide",
+        "type": "bool"
+      }
+    ],
+    "name": "LogPoolHide",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "kyc",
+        "type": "bool"
+      }
+    ],
+    "name": "LogPoolKYCUpdate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "status",
+        "type": "uint256"
+      }
+    ],
+    "name": "LogPoolStatusChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tier",
+        "type": "uint256"
+      }
+    ],
+    "name": "LogPoolTierUpdate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "unlockedVestingAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "LogPoolUnlockVestingToken",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "whitelistable",
+        "type": "bool"
+      }
+    ],
+    "name": "LogUpdateWhitelistable",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "_didRefund",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "_weiRaised",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      },
+      {
+        "internalType": "address[]",
+        "name": "whitelistedAddresses",
+        "type": "address[]"
+      }
+    ],
+    "name": "addAddressesToWhitelist",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      }
+    ],
+    "name": "cancelPool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      }
+    ],
+    "name": "claimToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "collaborations",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "hardCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "softCap",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "presaleRate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dexCapPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dexRate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tier",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IDO.PoolModel",
+        "name": "model",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "startDateTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "endDateTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "listDateTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minAllocationPerUser",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxAllocationPerUser",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dexLockup",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "whitelistable",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct IDO.PoolDetails",
+        "name": "details",
+        "type": "tuple"
+      },
+      {
+        "internalType": "address",
+        "name": "_projectTokenAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_extraData",
+        "type": "string"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "vestingAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "unlockedVestingAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "firstPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "firstPeriod",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "eachPercent",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "eachPeriod",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IOldPool.PoolVesting",
+        "name": "vesting",
+        "type": "tuple"
+      }
+    ],
+    "name": "createPool",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "poolAddress",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      }
+    ],
+    "name": "deposit",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      }
+    ],
+    "name": "endPool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "_poolFixedFee",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_poolPercentFee",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_poolTokenPercentFee",
+        "type": "uint256"
+      }
+    ],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "isHiddenPool",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "isNewPool",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "participantsAddress",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "poolAddresses",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "poolDetails",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "startDateTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "endDateTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "listDateTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "minAllocationPerUser",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maxAllocationPerUser",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "dexLockup",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "extraData",
+        "type": "string"
+      },
+      {
+        "internalType": "bool",
+        "name": "whitelistable",
+        "type": "bool"
+      },
+      {
+        "internalType": "bool",
+        "name": "audit",
+        "type": "bool"
+      },
+      {
+        "internalType": "string",
+        "name": "auditLink",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "poolFixedFee",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "poolInformation",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "hardCap",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "softCap",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "presaleRate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "dexCapPercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "dexRate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "projectTokenAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "enum IOldPool.PoolStatus",
+        "name": "status",
+        "type": "uint8"
+      },
+      {
+        "internalType": "enum IOldPool.PoolTier",
+        "name": "tier",
+        "type": "uint8"
+      },
+      {
+        "internalType": "bool",
+        "name": "kyc",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "poolOwners",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "poolPercentFee",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "poolTokenPercentFee",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "poolVesting",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "vestingAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "unlockedVestingAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "firstPercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "firstPeriod",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "eachPercent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "eachPeriod",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      }
+    ],
+    "name": "refund",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "_poolFixedFee",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_poolPercentFee",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_poolTokenPercentFee",
+        "type": "uint256"
+      }
+    ],
+    "name": "setAdminFee",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      }
+    ],
+    "name": "unlockLiquidityDex",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      }
+    ],
+    "name": "unlockVestingToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "_audit",
+        "type": "bool"
+      },
+      {
+        "internalType": "string",
+        "name": "_auditLink",
+        "type": "string"
+      }
+    ],
+    "name": "updateAuditStatus",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_extraData",
+        "type": "string"
+      }
+    ],
+    "name": "updateExtraData",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "isHide",
+        "type": "bool"
+      }
+    ],
+    "name": "updateHidePool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "_kyc",
+        "type": "bool"
+      }
+    ],
+    "name": "updateKYCStatus",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_tier",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateTierStatus",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pool",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "whitelistable",
+        "type": "bool"
+      }
+    ],
+    "name": "updateWhitelistable",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "whitelistedAddressesArray",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "stateMutability": "payable",
+    "type": "receive"
+  }
+]

@@ -1,0 +1,124 @@
+*{
+    margin: 0; padding: 0; box-sizing: border-box;
+}
+
+.border{
+    border: 2px solid rgb(11, 172, 226);
+}
+
+#heading{
+    padding-top: 20%;
+    color: white;
+    padding-left: 10px;
+}
+
+.hero-bg{
+    background-image: url("images/bg.png");
+    background-size: cover;
+}
+
+.card{
+   background: #232323;
+    padding: 8px 10px;
+    text-align: center;
+    border-radius: 12px;
+}
+
+.card-img{
+    width: 50px;
+    margin: auto;
+}
+
+.lcd-img{
+    margin-left: 40px;
+    padding-top: 20px;
+    width: 1020px;
+}
+
+.upcomming-card{
+    background: #272727;
+    border-radius: 12px;
+}
+
+.up-card{
+    margin: auto;
+    width: 120px;
+}
+
+.date{
+    background: #56C5FF;
+    color: white;
+    display: inline-block;
+    padding: 4px;
+    border-radius: 6px;
+    margin: 8px;
+}
+
+.bdr{
+    border: 2px solid #56C5FF;
+    border-radius: 6px;
+    margin-bottom: 14px;
+}
+
+.pool-border{
+    border: 2px solid #232323;
+    border-radius: 6px;
+    margin-bottom: 14px;
+}
+
+.feature-img{
+    width: 370px;
+}
+
+.join-army{
+    background-color: #373737;
+    padding: 7px 27px;
+    color: white;
+    margin: 0;
+    /* display: flex;
+    justify-content: space-between; */
+}
+
+.apply-to-lunch{
+    background-color: #56C5FF;
+    padding: 16px;
+    text-align: center;
+}
+
+.road-map img{
+    width: 600px;
+    display: flex;
+    margin: auto;
+}
+
+.flag-mans{
+    width: 150px;
+    
+}
+
+.bg-footer-img{
+    background: url("images//footer-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    padding: 10px;
+  }
+.grid-item {
+    padding: 8px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.footer-icons{
+    font-size: 28px;
+}
+
+.copyright{
+    display: flex;
+    justify-content: space-between;
+}

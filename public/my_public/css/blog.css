@@ -1,0 +1,113 @@
+*{
+    margin: 0; padding: 0; box-sizing: border-box;
+}
+
+.border{
+    border: 2px solid rgb(11, 172, 226);
+}
+
+.blog{
+    text-decoration: none;
+}
+
+#heading{
+    padding-top: 20%;
+    color: white;
+    padding-left: 10px;
+}
+
+.collapse{
+    justify-content: space-between;
+}
+
+.menu-btn{
+    background-color: rgb(37, 37, 37);
+}
+
+.blog a{
+    text-decoration: none;
+}
+
+.blog-section{
+    display: flex;
+    justify-content: space-between;
+}
+
+.join-army{
+    background-color: #373737;
+    padding: 7px 27px;
+    color: white;
+    margin: 0;
+}
+
+.army-img{
+    width: 200px;
+    padding: 17px 0 0;
+    margin-left: -50px;
+}
+
+.join-army-btn{
+    background-color: #24B6E6;
+    padding: 6px 22px;
+    color: white;
+    border-radius: 6px;
+    border: 0;
+}
+
+.apply-to-lunch{
+    background-color: #56C5FF;
+    padding: 20px;
+    text-align: center;
+}
+
+.apply-to-lunch h4 {
+    padding: 26px 0;
+}
+
+.apply-to-lunch .btn-dark {
+    margin: 20px 0;
+}
+
+
+.bg-footer-img{
+    background: url("images//footer-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.links a{
+    text-decoration: none;
+}
+
+.footer-icon-bg{
+    background-color: #373737;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.footer-icons{
+    font-size: 28px;
+}
+
+.copyright{
+    display: flex;
+    justify-content: space-between;
+}
+
+.copyright-text{
+    color: #24B6E6;
+}
+
+@media only screen and (max-width: 991px) {
+    .logo {
+      display: none;
+    }
+
+}
+
+@media only screen and (min-width: 992px) {
+    .language-btn{
+        display: none;
+    }
+}

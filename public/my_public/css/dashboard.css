@@ -1,0 +1,215 @@
+*{
+    margin: 0; padding: 0; box-sizing: border-box;
+}
+
+.border{
+    border: 2px solid rgb(11, 172, 226);
+}
+
+#heading{
+    padding-top: 20%;
+    color: white;
+    padding-left: 10px;
+}
+
+.collapse{
+    justify-content: space-between;
+}
+
+.menu-btn{
+    background-color: rgb(37, 37, 37);
+}
+
+.max{
+    display: flex;
+    justify-content: space-between;
+    background-color: #2e2c2c;
+    padding: 6px;
+    border-radius: 8px;
+}
+
+.link{
+    text-decoration: none;
+}
+
+.links a{
+    text-decoration: none;
+}
+
+
+.bit{
+    background-color: #2e2c2c;
+    padding: 8px;
+
+}
+
+.bdr-round{
+    border-radius: 6px;
+}
+
+.bit-btn{
+    display: flex;
+    justify-content: space-between;
+}
+
+.bit-btn p{
+    background-color: rgba(26, 25, 25, 0.63);
+    padding: 4px 14px;
+    margin-top: 6px;
+    border-radius: 4px;
+}
+
+.btn-infoo{
+    padding: 0px 22px;
+    display: block;
+    text-align: center;
+    background-color: #56C5FF;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+}
+
+.card{
+    background-color: #232323;
+    padding: 8px;
+    color: white;
+}
+
+.e-icon{
+    background-color: #FFFFFF1A;
+    font-size: 28px;
+    padding: 14px;
+    border-radius: 50px;
+    margin: 14px 34px;
+}
+
+.e-img{
+    background-color: #FFFFFF1A;
+    width: 56px;
+    padding: 14px;
+    border-radius: 50px;
+    margin: 14px 34px;
+}
+
+.project-bg{
+    background-color: #232323;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.geni-bg{
+    background-color: #232323;
+    border-radius: 6px;
+}
+
+.public-text{
+    background-color: #333232;
+    padding: 6px;
+    display: inline-block;
+}
+
+.Nft-arrow{
+    font-size: 24px;
+}
+
+.projects-bg{
+    background-color: #232323;
+    border-radius: 6px;
+}
+
+.allocation-btn{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+#claim{
+    background-color: #2e2c2c;
+    border-radius: 6px;
+}
+
+.join-army{
+    background-color: #373737;
+    padding: 7px 27px 0;
+    color: white;
+    margin: 0;
+}
+
+.join-army-btn{
+    background-color: #24B6E6;
+    padding: 6px 22px;
+    color: white;
+    border-radius: 6px;
+    border: 0;
+}
+
+.army-img{
+    width: 200px;
+    padding: 17px 0 0;
+    margin-left: -50px;
+}
+
+.apply-to-lunch{
+    background-color: #56C5FF;
+    padding: 16px;
+    text-align: center;
+}
+
+.apply-to-lunch h4 {
+    padding: 26px 0;
+}
+
+.apply-to-lunch .btn-dark {
+    margin: 20px 0;
+}
+
+.bg-footer-img{
+    background: url("images//footer-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    padding: 10px;
+}
+
+.grid-item {
+    padding: 8px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.footer-icon-bg{
+    background-color: #373737;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.footer-icons{
+    font-size: 28px;
+}
+
+.copyright{
+    display: flex;
+    justify-content: space-between;
+}
+
+.copyright-text{
+    color: #24B6E6;
+}
+
+@media only screen and (max-width: 991px) {
+    .logo {
+      display: none;
+    }
+
+}
+
+@media only screen and (min-width: 992px) {
+    .language-btn{
+        display: none;
+    }
+}

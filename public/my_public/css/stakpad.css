@@ -1,0 +1,162 @@
+*{
+    margin: 0; padding: 0; box-sizing: border-box;
+}
+
+.border{
+    border: 2px solid rgb(11, 172, 226);
+}
+
+#heading{
+    padding-top: 20%;
+    color: white;
+    padding-left: 10px;
+}
+
+.heading-left-right{
+    display: flex;
+    justify-content: space-between;
+}
+
+.collapse{
+    justify-content: space-between;
+}
+
+.menu-btn{
+    background-color: rgb(37, 37, 37);
+}
+
+.pool-border{
+    background-color: #242323;
+    border: 2px solid #232323;
+    border-radius: 6px;
+    margin-bottom: 14px;
+}
+
+.pool-img{
+    width: 60px;
+}
+
+.second-section-bg{
+    background-color: #232323;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+
+.custom-button{
+    background-color: #24B6E6;
+    color: white;
+    border-radius: 6px;
+    padding: 8px 30px;
+    border: none;
+    margin: 4px;
+}
+
+.custom-button-2{
+    background-color: #373737;
+    border-radius: 6px;
+    padding: 8px 33px;
+    border: none;
+}
+
+.max{
+    display: flex;
+    justify-content: space-between;
+    background-color: #373737;
+    padding: 6px;
+    border-radius: 8px;
+}
+
+.project-container{
+    display: grid;
+    grid-template-columns: repeat(2,21vw);
+}
+
+.join-army{
+    background-color: #373737;
+    padding: 7px 27px;
+    color: white;
+    margin: 0;
+}
+
+.join-army-btn{
+    background-color: #24B6E6;
+    padding: 6px 22px;
+    color: white;
+    border-radius: 6px;
+    border: 0;
+}
+
+.army-img{
+    width: 200px;
+    padding: 17px 0 0;
+    margin-left: -50px;
+}
+
+.apply-to-lunch{
+    background-color: #56C5FF;
+    padding: 20px;
+    text-align: center;
+}
+
+.apply-to-lunch h4 {
+    padding: 26px 0;
+}
+
+.apply-to-lunch .btn-dark {
+    margin: 20px 0;
+}
+
+.bg-footer-img{
+    background: url("images//footer-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    padding: 10px;
+  }
+.grid-item {
+    padding: 8px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.footer-icon-bg{
+    background-color: #373737;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.links a{
+    text-decoration: none;
+}
+
+.footer-icons{
+    font-size: 28px;
+}
+
+.copyright{
+    display: flex;
+    justify-content: space-between;
+}
+
+.copyright-text{
+    color: #24B6E6;
+}
+
+@media only screen and (max-width: 991px) {
+    .logo {
+      display: none;
+    }
+
+}
+
+@media only screen and (min-width: 992px) {
+    .language-btn{
+        display: none;
+    }
+}

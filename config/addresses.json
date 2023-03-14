@@ -1,0 +1,13 @@
+{
+    "eth":{
+        "lock":[
+            "0x39F1bBd825aF6a61DCB6335BC7dE78AcC27934f9"
+        ]
+    },
+    "bsc":{
+        "lock":[
+            "0xEe89497CB25A2D57B63c7aF35DC194Da04Eb55ed"
+        ]
+    }
+    
+}

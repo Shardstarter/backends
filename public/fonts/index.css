@@ -1,0 +1,115 @@
+@font-face {
+  font-family: 'CircularStd';
+  font-weight: 400;
+  font-style: normal;
+  src: local('CircularStd'), url('CircularStd-Book.otf') format('opentype');
+}
+@font-face {
+  font-family: 'CircularStd';
+  font-weight: 500;
+  font-style: normal;
+  src: local('CircularStd'), url('CircularStd-Medium.otf') format('opentype');
+}
+@font-face {
+  font-family: 'CircularStd';
+  font-weight: 700;
+  font-style: normal;
+  src: local('CircularStd'), url('CircularStd-Bold.otf') format('opentype');
+}
+
+.fc a {
+    text-decoration: none !important;
+    font-size: 1.25rem;
+    color: #FFF !important;
+}
+
+.fv .fc-daygrid-day-top {
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: flex-end;
+    border-color: #1fb7e7 !important;
+}
+
+.fc-toolbar-title {
+    padding: 40px 20px 0px;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 45px;
+    line-height: 100%;
+    letter-spacing: 0.01em;
+    color: #1fb7e7 !important;
+}
+
+.fc th, .fc td {
+    /*vertical-align: middle !important;*/
+}
+
+.fc .fc-daygrid-day-frame {
+    /*min-height: unset !important;*/
+}
+
+.fc .fc-daygrid-day-top {
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.fc-event-main {
+    overflow: hidden;
+}
+
+.fc-h-event {
+    background-color: transparent !important;
+    border: none !important;
+    /*background-color: #1fb7e7 !important;*/
+}
+
+.fc-theme-standard td, .fc-theme-standard th {
+    border-color: #1fb7e7 !important
+
+}
+
+.fc-col-header-cell .fc-day fc-day-sun {
+    border-top: none !important;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+    border-color: #1fb7e7 !important
+}
+
+.fc-toolbar-chunk button {
+    text-transform: capitalize !important;
+}
+
+.fc th {
+    background-color: #1fb7e7 !important;
+    height: 3em;
+
+
+}
+
+.fc th a {
+    color: #FFF !important;
+    font-weight: 300 !important;
+}
+
+.fc .fc-button-primary {
+    background-color: #1fb7e7 !important;
+    border-color: #1fb7e7 !important;
+}
+
+.fc-toolbar-chunk:nth-child(1) {
+    padding-left: 40%;
+}
+
+.fc-toolbar-title {
+    color: #FFF !important;
+}
+
+.fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
+    max-height: 85px !important;
+    overflow: hidden;
+}
+
+.swiper-wrapper {
+    gap: 1em !important
+}
