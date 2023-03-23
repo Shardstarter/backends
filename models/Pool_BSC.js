@@ -118,6 +118,9 @@ const Pool_BSCSchema = new Schema(
         alarms: {
             type: Array
         },
+        logo: {
+            type: String
+        },
         ipfs: {
             logo: {
                 type: String

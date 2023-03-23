@@ -5,7 +5,7 @@ const TokenLock_BSC = require("../models/TokenLock_BSC");
 const webpush = require("web-push");
 const ethers = require("ethers");
 const erc20_abi = require("../abi/erc20.json");
-const {formatEther, formatUnits} = require("@ethersproject/units");
+const { formatEther, formatUnits } = require("@ethersproject/units");
 const axios = require("axios");
 require("dotenv").config();
 
@@ -68,108 +68,108 @@ exports.getIDO = async (req, res) => {
         searchState = {
             $or: [
                 {
-                    projectTokenAddress: {$regex: search, $options: "i"},
+                    projectTokenAddress: { $regex: search, $options: "i" },
                 },
                 {
-                    name: {$regex: search, $options: "i"},
+                    name: { $regex: search, $options: "i" },
                 },
                 {
-                    symbol: {$regex: search, $options: "i"},
+                    symbol: { $regex: search, $options: "i" },
                 },
             ],
         };
     }
     if (tab == 1) {
-        tabState = {participantsAddresses: req.query.account};
+        tabState = { participantsAddresses: req.query.account };
     } else if (tab == 3) {
-        tabState = {owner: req.query.account};
+        tabState = { owner: req.query.account };
     }
     if (filter == 0) {
         //upcoming
         filterState = {
-            $and: [{status: filter}, {startDateTime: {$gt: Date.now()}}],
+            $and: [{ status: filter }, { startDateTime: { $gt: Date.now() } }],
         };
     } else if (filter == 1) {
         //live
         filterState = {
             $and: [
-                {status: "0"},
-                {startDateTime: {$lte: Date.now()}},
-                {endDateTime: {$gt: Date.now()}},
-                {$expr: {$lt: ["$weiRaised", "$hardCap"]}},
+                { status: "0" },
+                { startDateTime: { $lte: Date.now() } },
+                { endDateTime: { $gt: Date.now() } },
+                { $expr: { $lt: ["$weiRaised", "$hardCap"] } },
             ],
         };
     } else if (filter == 2) {
         //ended
         filterState = {
             $and: [
-                {status: "0"},
-                {endDateTime: {$lte: Date.now()}},
-                {listDateTime: {$gt: Date.now() - 86400 * 21 * 1000}},
-                {$expr: {$gte: ["$weiRaised", "$softCap"]}},
+                { status: "0" },
+                { endDateTime: { $lte: Date.now() } },
+                { listDateTime: { $gt: Date.now() - 86400 * 21 * 1000 } },
+                { $expr: { $gte: ["$weiRaised", "$softCap"] } },
             ],
         };
     } else if (filter == 3) {
         //finished
         filterState = {
             $and: [
-                {status: "0"},
-                {listDateTime: {$gt: Date.now() - 86400 * 21 * 1000}},
-                {$expr: {$eq: ["$weiRaised", "$hardCap"]}},
+                { status: "0" },
+                { listDateTime: { $gt: Date.now() - 86400 * 21 * 1000 } },
+                { $expr: { $eq: ["$weiRaised", "$hardCap"] } },
             ],
         };
     } else if (filter == 4) {
         //failed
         filterState = {
             $and: [
-                {status: "0"},
-                {endDateTime: {$lte: Date.now()}},
-                {$expr: {$lt: ["$weiRaised", "$softCap"]}},
+                { status: "0" },
+                { endDateTime: { $lte: Date.now() } },
+                { $expr: { $lt: ["$weiRaised", "$softCap"] } },
             ],
         };
     } else if (filter == 5) {
         //Listed on dex
-        filterState = {status: "1"};
+        filterState = { status: "1" };
     } else if (filter == 6) {
         //Cancelled
         filterState = {
             $or: [
-                {status: "2"},
+                { status: "2" },
                 {
                     $and: [
-                        {status: "0"},
-                        {listDateTime: {$lte: Date.now() - 86400 * 21 * 1000}},
-                        {$expr: {$gte: ["$weiRaised", "$softCap"]}},
+                        { status: "0" },
+                        { listDateTime: { $lte: Date.now() - 86400 * 21 * 1000 } },
+                        { $expr: { $gte: ["$weiRaised", "$softCap"] } },
                     ],
                 },
             ],
         };
     } else if (filter == 7) {
-        filterState = {kyc: true};
+        filterState = { kyc: true };
     } else if (filter == 8) {
-        filterState = {audit: true};
+        filterState = { audit: true };
     } else if (filter == 9) {
-        filterState = {tier: "1"};
+        filterState = { tier: "1" };
     } else if (filter == 10) {
-        filterState = {tier: "2"};
+        filterState = { tier: "2" };
     } else if (filter == 11) {
-        filterState = {tier: "3"};
+        filterState = { tier: "3" };
     } else if (filter == 12) {
-        filterState = {whitelistable: true}
+        filterState = { whitelistable: true }
     } else if (filter == 13) {
-        filterState = {whitelistable: false}
+        filterState = { whitelistable: false }
     }
     findState = {
         $and: [searchState, filterState, tabState],
     };
     pools = await Pool_BSC.find(findState)
-        .sort({[sort]: -1})
+        .sort({ [sort]: -1 })
         .skip(skip)
         .limit(limit);
     let counts = await Pool_BSC.find(findState).sort(sort).countDocuments();
 
     counts = Math.ceil(counts / 50);
-    res.json({pools, counts});
+    res.json({ pools, counts });
 };
 
 exports.getPool = async (req, res) => {
@@ -177,7 +177,7 @@ exports.getPool = async (req, res) => {
         address: req.params.address,
     });
 
-    res.json({pool});
+    res.json({ pool });
 };
 
 exports.getLiquidities = async (req, res) => {
@@ -197,7 +197,7 @@ exports.getLiquidities = async (req, res) => {
         };
     }
     if (tab == 1) {
-        tabState = {owner: req.query.account};
+        tabState = { owner: req.query.account };
     }
 
     findState = {
@@ -219,7 +219,7 @@ exports.getLiquidities = async (req, res) => {
     let counts = await LiquidityLock_BSC.find(findState).countDocuments();
 
     counts = Math.ceil(counts / 50);
-    res.json({liquidities, counts});
+    res.json({ liquidities, counts });
 };
 
 exports.getTokens = async (req, res) => {
@@ -239,7 +239,7 @@ exports.getTokens = async (req, res) => {
         };
     }
     if (tab == 1) {
-        tabState = {owner: req.query.account};
+        tabState = { owner: req.query.account };
     }
 
     findState = {
@@ -258,28 +258,28 @@ exports.getTokens = async (req, res) => {
     let counts = await TokenLock_BSC.find(findState).countDocuments();
 
     counts = Math.ceil(counts / 50);
-    res.json({tokens, counts});
+    res.json({ tokens, counts });
 };
 
 exports.getLiquidity = async (req, res) => {
     let liquidity = await LiquidityLock_BSC.findOne({
-        $and: [{token: req.params.token}, {owner: req.params.owner}],
+        $and: [{ token: req.params.token }, { owner: req.params.owner }],
     });
 
-    res.json({liquidity});
+    res.json({ liquidity });
 };
 
 exports.getToken = async (req, res) => {
     let token = await TokenLock_BSC.findOne({
-        $and: [{token: req.params.token}, {owner: req.params.owner}],
+        $and: [{ token: req.params.token }, { owner: req.params.owner }],
     });
 
-    res.json({token});
+    res.json({ token });
 };
 
 
 exports.createBSCIDO = async (req, res) => {
-    const {poolOwner, model, details, vesting, poolPercentFee, poolAddress, descriptions} = req.body;
+    const { poolOwner, model, details, vesting, poolPercentFee, poolAddress, descriptions, logo } = req.body;
     const {
         description,
         roadmap_description,
@@ -359,7 +359,7 @@ exports.createBSCIDO = async (req, res) => {
         const symbol = await erc20_contract.symbol();
         const name = await erc20_contract.name();
         console.log("createBSCIDO symbol", symbol)
-        const whiteLists = ['0x29e5AE7C1c3D3ce86cA42EA7598fe56cC30d9C93', '0x09D97c2cbb8bdC146314085da07F7538722334A2'],
+        const whiteLists = [],
             participantsAddresses = [];
 
         try {
@@ -420,69 +420,15 @@ exports.createBSCIDO = async (req, res) => {
             teams_url,
             tokenomics_description,
             tokenomics_url,
-            twitter_followers
+            twitter_followers,
+            logo
         };
         console.log("createBSCIDO pool", pool)
         if (pool != null) {
             const newPool = new Pool_BSC(pool);
             let result = await newPool.save();
-            res.json({result});
+            res.json({ result });
             console.log("createBSCIDO newPool", result)
-            // let startTimeOut, endTimeOut;
-            // if (pool.status == 0)
-            //   startTimeOut = setTimeout(startPool_bsc, parseInt(pool.startDateTime) - Date.now(), pool.address);
-            // if (pool.status <= 2)
-            //   endTimeOut = setTimeout(endPool_bsc, parseInt(pool.endDateTime) - Date.now(), pool.address);
-            // pool.startTimeOut = startTimeOut;
-            // pool.endTimeOut = endTimeOut;
-            // setTimeout(
-            //   send_alarm,
-            //   parseInt(pool.startDateTime) - Date.now() - 5 * 60 * 1000,
-            //   "bsc",
-            //   pool_address,
-            //   "presale",
-            //   "5"
-            // );
-            // setTimeout(
-            //   send_alarm,
-            //   parseInt(pool.startDateTime) - Date.now() - 15 * 60 * 1000,
-            //   "bsc",
-            //   pool_address,
-            //   "presale",
-            //   "15"
-            // );
-            // setTimeout(
-            //   send_alarm,
-            //   parseInt(pool.startDateTime) - Date.now() - 30 * 60 * 1000,
-            //   "bsc",
-            //   pool_address,
-            //   "presale",
-            //   "30"
-            // );
-            // setTimeout(
-            //   send_alarm,
-            //   parseInt(pool.listDateTime) - Date.now() - 5 * 60 * 1000,
-            //   "bsc",
-            //   pool_address,
-            //   "listing",
-            //   "5"
-            // );
-            // setTimeout(
-            //   send_alarm,
-            //   parseInt(pool.listDateTime) - Date.now() - 15 * 60 * 1000,
-            //   "bsc",
-            //   pool_address,
-            //   "listing",
-            //   "15"
-            // );
-            // setTimeout(
-            //   send_alarm,
-            //   parseInt(pool.listDateTime) - Date.now() - 30 * 60 * 1000,
-            //   "bsc",
-            //   pool_address,
-            //   "listing",
-            //   "30"
-            // );
         } else {
             console.log("createBSCIDO newPool done else")
         }
@@ -490,4 +436,20 @@ exports.createBSCIDO = async (req, res) => {
         console.log("createBSCIDO err", err)
         return null;
     }
+}
+
+exports.updateIDOWeiRaised = async (req, res) => {
+    try {
+        const { address, weiRaised } = req.body;
+        console.log(req.body)
+        let pool = await Pool_BSC.findOne({ address })
+        console.log(pool)
+        pool.weiRaised = weiRaised;
+        await pool.save();
+        return res.json({ result: true, data: 'done' })
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+
+
 }

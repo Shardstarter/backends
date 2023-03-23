@@ -9,7 +9,7 @@ router.get("/get-followers/:username", twitterController.getFollowers);
 
 router.get("/eth/ido", ethController.getIDO);
 router.get("/eth/pool/:address", ethController.getPool);
-router.get("/bsc/ido", bscController.getIDO);
+router.get("/bsc/ido", bscController.getIDO); //deals API for deal page
 router.get("/bsc/pool/:address", bscController.getPool);
 router.get("/bsc/stake", bscController.getStake); //stakepad
 router.post("/bsc/stake", bscController.createStake); //stakepad
@@ -27,5 +27,6 @@ router.get("/bsc/token/:token/:owner", bscController.getToken);
 router.post("/bsc/webpush", bscController.webPush);
 router.post("/eth/webpush", ethController.webPush);
 
-router.post('/create-bsc-ido', bscController.createBSCIDO);
+router.post('/create-bsc-ido', bscController.createBSCIDO); //admin create IDO
+router.post('/update-ido-weiraiased', bscController.updateIDOWeiRaised); //update wei raised
 module.exports = router;
