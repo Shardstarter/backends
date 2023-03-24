@@ -329,19 +329,21 @@ exports.createBSCIDO = async (req, res) => {
         startDateTime = startDateTime * 1000;
         endDateTime = endDateTime * 1000;
         listDateTime = listDateTime * 1000;
-        const erc20_contract = new ethers.Contract(
-            projectTokenAddress,
-            erc20_abi,
-            ethers_wss_bsc
-        );
+        // const erc20_contract = new ethers.Contract(
+        //     projectTokenAddress,
+        //     erc20_abi,
+        //     ethers_wss_bsc
+        // );
 
         hardCap = formatEther(hardCap);
         softCap = formatEther(softCap);
 
-        const decimals = await erc20_contract.decimals();
+        // const decimals = await erc20_contract.decimals();
+        const decimals = 18;
         console.log("decimals", decimals)
 
-        const totalSupply = formatUnits(await erc20_contract.totalSupply(), decimals);
+        // const totalSupply = formatUnits(await erc20_contract.totalSupply(), decimals);
+        const totalSupply = 0;
 
         let vestingAmount = vesting[0];
         let unlockedVestingAmount = vesting[1];
@@ -356,8 +358,10 @@ exports.createBSCIDO = async (req, res) => {
         dexRate = formatUnits(dexRate, decimals);
         minAllocationPerUser = formatEther(minAllocationPerUser);
         maxAllocationPerUser = formatEther(maxAllocationPerUser);
-        const symbol = await erc20_contract.symbol();
-        const name = await erc20_contract.name();
+        // const symbol = await erc20_contract.symbol();
+        const symbol = 'BUSD';
+        // const name = await erc20_contract.name();
+        const name = 'BUSD';
         console.log("createBSCIDO symbol", symbol)
         const whiteLists = [],
             participantsAddresses = [];
