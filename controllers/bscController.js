@@ -279,7 +279,9 @@ exports.getToken = async (req, res) => {
 
 
 exports.createBSCIDO = async (req, res) => {
-    const { poolOwner, model, details, vesting, poolPercentFee, poolAddress, descriptions, logo } = req.body;
+    const { poolOwner, model, details, vesting, poolPercentFee, poolAddress, descriptions, logo,
+        projectName, poster, category, blockchain, tgi, type,
+    } = req.body;
     const {
         description,
         roadmap_description,
@@ -425,7 +427,10 @@ exports.createBSCIDO = async (req, res) => {
             tokenomics_description,
             tokenomics_url,
             twitter_followers,
-            logo
+            logo,
+            projectName,
+            poster,
+            category, blockchain, tgi, type,
         };
         console.log("createBSCIDO pool", pool)
         if (pool != null) {
