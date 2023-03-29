@@ -2,6 +2,7 @@ const Pool_BSC = require("../models/Pool_BSC");
 const StakingPool = require("../models/StakingPool");
 const LiquidityLock_BSC = require("../models/LiquidityLock_BSC");
 const TokenLock_BSC = require("../models/TokenLock_BSC");
+const PoolApproving = require("../models/Pool_Approving");
 const webpush = require("web-push");
 const ethers = require("ethers");
 const erc20_abi = require("../abi/erc20.json");
@@ -459,6 +460,41 @@ exports.updateIDOWeiRaised = async (req, res) => {
     } catch (error) {
         return res.json({ result: false, message: error.message })
     }
-
-
 }
+
+
+exports.setApproval = async (req, res) => {
+    try {
+        var { pool_address, user_address } = req.body
+        var record = await PoolApproving.findOne({
+            pool_address,
+            user_address
+        });
+
+        if (!record)
+            await PoolApproving.create({
+                pool_address,
+                user_address
+            });
+        return res.json({ result: true, data: 'done' })
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
+
+
+exports.getApproval = async (req, res) => {
+    try {
+        var { pool_address, user_address } = req.body
+        var record = await PoolApproving.findOne({
+            pool_address,
+            user_address
+        });
+        if (record)
+            return res.json({ result: true, data: true, message: 'User approved' })
+        else
+            return res.json({ result: true, data: false, message: 'User did not approve' })
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
