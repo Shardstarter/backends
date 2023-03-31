@@ -31,4 +31,5 @@ router.post('/create-bsc-ido', bscController.createBSCIDO); //admin create IDO
 router.post('/update-ido-weiraiased', bscController.updateIDOWeiRaised); //update wei raised
 router.post('/approval/set', bscController.setApproval); // user approves for pool
 router.post('/approval/get', bscController.getApproval); //get  user approval status
+router.post('/approval/count', bscController.countApproval); //count deal approvals
 module.exports = router;

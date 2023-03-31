@@ -20,6 +20,9 @@ const DBSchema = new Schema(
     tokenSymbol: {
       type: String,
     },
+    logo: {
+      type: String,
+    },
     rewardRate: {
       type: Number,
     },

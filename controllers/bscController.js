@@ -281,7 +281,7 @@ exports.getToken = async (req, res) => {
 
 exports.createBSCIDO = async (req, res) => {
     const { poolOwner, model, details, vesting, poolPercentFee, poolAddress, descriptions, logo,
-        projectName, poster, category, blockchain, tgi, type,
+        projectName, deal, poster, category, blockchain, tgi, type,
     } = req.body;
     const {
         description,
@@ -429,7 +429,7 @@ exports.createBSCIDO = async (req, res) => {
             tokenomics_url,
             twitter_followers,
             logo,
-            projectName,
+            projectName, deal,
             poster,
             category, blockchain, tgi, type,
         };
@@ -494,6 +494,18 @@ exports.getApproval = async (req, res) => {
             return res.json({ result: true, data: true, message: 'User approved' })
         else
             return res.json({ result: true, data: false, message: 'User did not approve' })
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
+
+exports.countApproval = async (req, res) => {
+    try {
+        var { pool_address } = req.body
+        var count = await PoolApproving.countDocuments({
+            pool_address,
+        });
+        return res.json({ result: true, data: count, message: 'Number of approval for this pool' })
     } catch (error) {
         return res.json({ result: false, message: error.message })
     }

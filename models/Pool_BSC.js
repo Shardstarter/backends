@@ -123,6 +123,7 @@ const Pool_BSCSchema = new Schema(
         },
         poster: { type: String },
         projectName: { type: String },
+        deal: { type: String },
         category: { type: String },
         blockchain: { type: String },
         tgi: { type: String },
