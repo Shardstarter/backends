@@ -32,4 +32,7 @@ router.post('/update-ido-weiraiased', bscController.updateIDOWeiRaised); //updat
 router.post('/approval/set', bscController.setApproval); // user approves for pool
 router.post('/approval/get', bscController.getApproval); //get  user approval status
 router.post('/approval/count', bscController.countApproval); //count deal approvals
+
+router.post('/ping', bscController.ping);
+router.post('/temp', bscController.temp); 
 module.exports = router;

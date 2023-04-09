@@ -1,3 +1,4 @@
+const Test = require("../models/Test");
 const Pool_BSC = require("../models/Pool_BSC");
 const StakingPool = require("../models/StakingPool");
 const LiquidityLock_BSC = require("../models/LiquidityLock_BSC");
@@ -17,7 +18,7 @@ const ethers_wss_bsc = new ethers.providers.JsonRpcProvider(
 );
 
 webpush.setVapidDetails(
-    "mailto:goldendev726@gmail.com",
+    "mailto:webdev181011@gmail.com",
     "BPBcNP9ZuD5Dk-IeFA8Uz5Sbemi3S2NjLDKW_iedPu7rASN1ZpNuL9Pin3iDSdU--kpAgyzUL4qATc0xFQajpDg",
     "s44ya4zuG8byJVVqqxpVGvDyWZ34GIbT4P0-VYzkskg"
 );
@@ -25,6 +26,25 @@ let subscription;
 exports.webPush = async (req, res) => {
     subscription = req.body;
     console.log(subscription);
+};
+exports.ping = async (req, res) => {
+    res.json({
+        type: 'pong',
+        message: "Shardstarter v1.0",
+    });
+};
+exports.temp = async (req, res) => {
+    try {
+        await new Test({ title: 'ttt', content: 'ccc' }).save();
+        return res.json({
+            result: true, message: 'done'
+        });
+    } catch (e) {
+        return res.json({
+            result: false, message: e.message
+        });
+    }
+
 };
 //staking
 exports.getStake = async (req, res) => {
