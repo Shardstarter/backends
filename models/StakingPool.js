@@ -23,6 +23,9 @@ const DBSchema = new Schema(
     logo: {
       type: String,
     },
+    lockingdays: {
+      type: Number,
+    },
     rewardRate: {
       type: Number,
     },

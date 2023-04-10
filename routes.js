@@ -12,7 +12,7 @@ router.get("/eth/pool/:address", ethController.getPool);
 router.get("/bsc/ido", bscController.getIDO); //deals API for deal page
 router.get("/bsc/pool/:address", bscController.getPool);
 router.get("/bsc/stake", bscController.getStake); //stakepad
-router.post("/bsc/stake", bscController.createStake); //stakepad
+router.post("/bsc/stake", bscController.createStake); //stakepad - admin create
 
 router.get("/eth/liquidities", ethController.getLiquidities);
 router.get("/eth/liquidity/:token/:owner", ethController.getLiquidity);
