@@ -4,6 +4,9 @@ const StakingPool = require("../models/StakingPool");
 const LiquidityLock_BSC = require("../models/LiquidityLock_BSC");
 const TokenLock_BSC = require("../models/TokenLock_BSC");
 const PoolApproving = require("../models/Pool_Approving");
+const UserStakings = require("../models/UserStakings");
+const UserInfo = require("../models/UserInfo");
+const UserDealStatus = require("../models/UserDealStatus");
 const webpush = require("web-push");
 const ethers = require("ethers");
 const erc20_abi = require("../abi/erc20.json");
@@ -58,6 +61,52 @@ exports.createStake = async (req, res) => {
     await StakingPool(req.body).save();
     res.json("done");
 };
+exports.updateUserStaking = async (req, res) => {
+    try {
+        const { staking_address, wallet_address, changing_amount } = req.body;
+        let existing = await UserStakings.findOne({ staking_address, wallet_address });
+
+        if (existing) {
+            let current_staked = existing.staked_amount || 0;
+            let new_staked = current_staked + changing_amount;
+
+            existing.staked_amount = new_staked;
+            await existing.save();
+
+            return res.json({ result: true, data: 'done' })
+        } else {
+            await new UserStakings({ staking_address, wallet_address, staked_amount: changing_amount }).save();
+            return res.json({ result: true, data: 'done' })
+        }
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
+exports.getCountForTierLevel = async (req, res) => {
+    try {
+        const { staking_address } = req.body;
+        var level1_amount = 1000;
+        var level2_amount = 2000;
+        var level3_amount = 3000;
+        var level4_amount = 4000;
+
+        let level0 = await UserStakings.count({ staking_address, staked_amount: { $lt: level1_amount } });
+        let level1 = await UserStakings.count({ staking_address, staked_amount: { $gte: level1_amount, $lt: level2_amount } });
+        let level2 = await UserStakings.count({ staking_address, staked_amount: { $gte: level2_amount, $lt: level3_amount } });
+        let level3 = await UserStakings.count({ staking_address, staked_amount: { $gte: level3_amount, $lt: level4_amount } });
+        let level4 = await UserStakings.count({ staking_address, staked_amount: { $gte: level4_amount } });
+
+        return res.json({ result: true, data: [level0, level1, level2, level3, level4], message: 'count of each tier level' })
+
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+
+};
+
+
+
+
 
 exports.getIDO = async (req, res) => {
     const pushMessageData = {
@@ -482,6 +531,24 @@ exports.updateIDOWeiRaised = async (req, res) => {
     }
 }
 
+exports.updateUserDeposit = async (req, res) => {
+    try {
+        const { pool_address, wallet_address, amount } = req.body;
+
+        let existing = await UserDealStatus.findOne({ pool_address, wallet_address })
+        if (existing) {
+            existing.deposit_amount = Number(existing.deposit_amount) + Number(amount);
+            await existing.save();
+            return res.json({ result: true, data: 'done' })
+        } else {
+            await new UserDealStatus({ pool_address, wallet_address, deposit_amount: amount }).save();
+            return res.json({ result: true, data: 'done' })
+        }
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+}
+
 
 exports.setApproval = async (req, res) => {
     try {
@@ -526,6 +593,58 @@ exports.countApproval = async (req, res) => {
             pool_address,
         });
         return res.json({ result: true, data: count, message: 'Number of approval for this pool' })
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
+
+/** User info */
+exports.getUserInfo = async (req, res) => {
+    try {
+        var { wallet_address } = req.body
+        let existing = await UserInfo.findOne({ wallet_address })
+        return res.json({ result: true, data: existing, message: 'Number of approval for this pool' })
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
+exports.setUserEmail = async (req, res) => {
+    try {
+        var { wallet_address, email } = req.body
+
+        if (!wallet_address) return res.json({ result: false, message: 'Wallet address is required.' })
+        let existing = await UserInfo.findOne({ wallet_address })
+        if (existing) {
+            existing.email = email;
+            await existing.save();
+            return res.json({ result: true, data: 'done' })
+        } else {
+            await new UserInfo({ wallet_address, email }).save();
+            return res.json({ result: true, data: 'done' })
+        }
+
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
+exports.getUserParticipations = async (req, res) => {
+    try {
+        var { wallet_address } = req.body
+        let rows = await UserDealStatus.find({ wallet_address }).lean();
+
+        await rows.reduce(async (accum, row, key) => {
+            await accum;
+
+            let pool = await Pool_BSC.findOne({ address: row.pool_address })
+            if (pool) {
+                row.projectName = pool.projectName;
+                row.deal = pool.deal;
+            }
+
+            return 1;
+        }, Promise.resolve(''));
+
+        return res.json({ result: true, data: rows })
     } catch (error) {
         return res.json({ result: false, message: error.message })
     }

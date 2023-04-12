@@ -13,6 +13,8 @@ router.get("/bsc/ido", bscController.getIDO); //deals API for deal page
 router.get("/bsc/pool/:address", bscController.getPool);
 router.get("/bsc/stake", bscController.getStake); //stakepad
 router.post("/bsc/stake", bscController.createStake); //stakepad - admin create
+router.post("/stake/updateUserStaking", bscController.updateUserStaking); //update user staking amount
+router.post("/stake/getCountForTierLevel", bscController.getCountForTierLevel); //get users count for each tier level
 
 router.get("/eth/liquidities", ethController.getLiquidities);
 router.get("/eth/liquidity/:token/:owner", ethController.getLiquidity);
@@ -29,9 +31,14 @@ router.post("/eth/webpush", ethController.webPush);
 
 router.post('/create-bsc-ido', bscController.createBSCIDO); //admin create IDO
 router.post('/update-ido-weiraiased', bscController.updateIDOWeiRaised); //update wei raised
+router.post('/update-user-deposit', bscController.updateUserDeposit); //update user deposit
 router.post('/approval/set', bscController.setApproval); // user approves for pool
 router.post('/approval/get', bscController.getApproval); //get  user approval status
 router.post('/approval/count', bscController.countApproval); //count deal approvals
+
+router.post('/user/getInfo', bscController.getUserInfo); //userinfo
+router.post('/user/setEmail', bscController.setUserEmail); //userinfo
+router.post('/user/getParticipations', bscController.getUserParticipations); //get status of IDO deal participation
 
 router.post('/ping', bscController.ping);
 router.post('/temp', bscController.temp); 
