@@ -2,44 +2,48 @@ const express = require("express");
 const router = express.Router();
 
 const ethController = require("./controllers/ethController");
-const bscController = require("./controllers/bscController");
+const mainController = require("./controllers/mainController");
 const twitterController = require("./controllers/twitterController");
 
 router.get("/get-followers/:username", twitterController.getFollowers);
 
 router.get("/eth/ido", ethController.getIDO);
 router.get("/eth/pool/:address", ethController.getPool);
-router.get("/bsc/ido", bscController.getIDO); //deals API for deal page
-router.get("/bsc/pool/:address", bscController.getPool);
-router.get("/bsc/stake", bscController.getStake); //stakepad
-router.post("/bsc/stake", bscController.createStake); //stakepad - admin create
-router.post("/stake/updateUserStaking", bscController.updateUserStaking); //update user staking amount
-router.post("/stake/getCountForTierLevel", bscController.getCountForTierLevel); //get users count for each tier level
+router.get("/bsc/ido", mainController.getIDO); //deals API for deal page
+router.get("/bsc/pool/:address", mainController.getPool);
+router.get("/bsc/stake", mainController.getStake); //stakepad
+router.post("/bsc/stake", mainController.createStake); //stakepad - admin create
+router.post("/stake/updateUserStaking", mainController.updateUserStaking); //update user staking amount
+router.post("/stake/getCountForTierLevel", mainController.getCountForTierLevel); //get users count for each tier level
 
 router.get("/eth/liquidities", ethController.getLiquidities);
 router.get("/eth/liquidity/:token/:owner", ethController.getLiquidity);
-router.get("/bsc/liquidities", bscController.getLiquidities);
-router.get("/bsc/liquidity/:token/:owner", bscController.getLiquidity);
+router.get("/bsc/liquidities", mainController.getLiquidities);
+router.get("/bsc/liquidity/:token/:owner", mainController.getLiquidity);
 
 router.get("/eth/tokens", ethController.getTokens);
 router.get("/eth/token/:token/:owner", ethController.getToken);
-router.get("/bsc/tokens", bscController.getTokens);
-router.get("/bsc/token/:token/:owner", bscController.getToken);
+router.get("/bsc/tokens", mainController.getTokens);
+router.get("/bsc/token/:token/:owner", mainController.getToken);
 
-router.post("/bsc/webpush", bscController.webPush);
+router.post("/bsc/webpush", mainController.webPush);
 router.post("/eth/webpush", ethController.webPush);
 
-router.post('/create-bsc-ido', bscController.createBSCIDO); //admin create IDO
-router.post('/update-ido-weiraiased', bscController.updateIDOWeiRaised); //update wei raised
-router.post('/update-user-deposit', bscController.updateUserDeposit); //update user deposit
-router.post('/approval/set', bscController.setApproval); // user approves for pool
-router.post('/approval/get', bscController.getApproval); //get  user approval status
-router.post('/approval/count', bscController.countApproval); //count deal approvals
+router.post('/create-bsc-ido', mainController.createBSCIDO); //admin create IDO
+router.post('/update-ido-weiraiased', mainController.updateIDOWeiRaised); //update wei raised
+router.post('/update-user-deposit', mainController.updateUserDeposit); //update user deposit
+router.post('/approval/set', mainController.setApproval); // user approves for pool
+router.post('/approval/get', mainController.getApproval); //get  user approval status
+router.post('/approval/count', mainController.countApproval); //count deal approvals
 
-router.post('/user/getInfo', bscController.getUserInfo); //userinfo
-router.post('/user/setEmail', bscController.setUserEmail); //userinfo
-router.post('/user/getParticipations', bscController.getUserParticipations); //get status of IDO deal participation
+router.post('/vote/create', mainController.createVote); //admin create vote
+router.post('/vote/get', mainController.getVotes); //user, get vote list
+router.post('/vote/place', mainController.placeVote); //user, place yes or no
 
-router.post('/ping', bscController.ping);
-router.post('/temp', bscController.temp); 
+router.post('/user/getInfo', mainController.getUserInfo); //userinfo
+router.post('/user/setEmail', mainController.setUserEmail); //userinfo
+router.post('/user/getParticipations', mainController.getUserParticipations); //get status of IDO deal participation
+
+router.post('/ping', mainController.ping);
+router.post('/temp', mainController.temp); 
 module.exports = router;

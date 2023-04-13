@@ -7,6 +7,7 @@ const PoolApproving = require("../models/Pool_Approving");
 const UserStakings = require("../models/UserStakings");
 const UserInfo = require("../models/UserInfo");
 const UserDealStatus = require("../models/UserDealStatus");
+const Vote = require("../models/Vote");
 const webpush = require("web-push");
 const ethers = require("ethers");
 const erc20_abi = require("../abi/erc20.json");
@@ -645,6 +646,52 @@ exports.getUserParticipations = async (req, res) => {
         }, Promise.resolve(''));
 
         return res.json({ result: true, data: rows })
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
+
+
+/** Vote */
+exports.createVote = async (req, res) => {
+    try {
+        var { projectName, logo, ticker, website, telegram, twitter, discord } = req.body
+
+        await Vote.create({
+            projectName, logo, ticker, website, telegram, twitter, discord
+        });
+        return res.json({ result: true, data: 'done' })
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
+
+exports.getVotes = async (req, res) => {
+    try {
+        var { } = req.body
+        var records = await Vote.find({});
+        return res.json({ result: true, data: records, })
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
+
+exports.placeVote = async (req, res) => {
+    try {
+        var { vote_id, wallet_address, power, isUp } = req.body
+        var record = await Vote.findOne({ _id: vote_id });
+        if (!record) return res.json({ result: false, message: 'No vote' })
+
+        let participants = record.participants;
+        participants.push({ wallet_address, power, isUp });
+        if (isUp)
+            record.up += power;
+        else
+            record.down += power;
+
+        await record.save();
+
+        return res.json({ result: true, data: 'done', })
     } catch (error) {
         return res.json({ result: false, message: error.message })
     }
