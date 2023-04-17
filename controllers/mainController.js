@@ -351,7 +351,8 @@ exports.getToken = async (req, res) => {
 
 exports.createBSCIDO = async (req, res) => {
     const { poolOwner, model, details, vesting, poolPercentFee, poolAddress, descriptions, logo,
-        projectName, deal, poster, category, blockchain, tgi, type,
+        projectName, deal, poster, category, blockchain, tgi, type, 
+        whitelistAddresses, whitelistMaxDeposit
     } = req.body;
     const {
         description,
@@ -368,8 +369,6 @@ exports.createBSCIDO = async (req, res) => {
         twitter_followers
     } = descriptions;
 
-    console.log(req.body)
-
     try {
         let ipfs = {};
         const weiRaised = 0;
@@ -382,9 +381,6 @@ exports.createBSCIDO = async (req, res) => {
         let status = "online" // not found
         let tier = model[5]
         let kyc = false // not found
-
-        console.log("projectTokenAddress", projectTokenAddress)
-
 
         let startDateTime = details[0]
         let endDateTime = details[1]
@@ -413,7 +409,6 @@ exports.createBSCIDO = async (req, res) => {
 
         // const decimals = await erc20_contract.decimals();
         const decimals = 18;
-        console.log("decimals", decimals)
 
         // const totalSupply = formatUnits(await erc20_contract.totalSupply(), decimals);
         const totalSupply = 0;
@@ -435,9 +430,9 @@ exports.createBSCIDO = async (req, res) => {
         const symbol = 'BUSD';
         // const name = await erc20_contract.name();
         const name = 'BUSD';
-        console.log("createBSCIDO symbol", symbol)
-        const whiteLists = [],
-            participantsAddresses = [];
+        
+        const participantsAddresses = [];
+        const whiteLists = whitelistAddresses.split(/\r?\n/).filter(Boolean);      
 
         try {
             let response_ipfs;
@@ -472,6 +467,7 @@ exports.createBSCIDO = async (req, res) => {
             whitelistable,
             decimals,
             whiteLists,
+            whitelistMaxDeposit,
             poolPercentFee,
             participantsAddresses,
             symbol,

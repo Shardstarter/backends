@@ -7,7 +7,6 @@ const Pool_BSCSchema = new Schema(
     {
         address: {
             type: String,
-            required: true,
         },
         owner: {
             type: String,
@@ -112,6 +111,9 @@ const Pool_BSCSchema = new Schema(
         whiteLists: {
             type: Array,
         },
+        whitelistMaxDeposit: {
+            type: Number
+        },
         participantsAddresses: {
             type: Array,
         },
@@ -128,7 +130,7 @@ const Pool_BSCSchema = new Schema(
         blockchain: { type: String },
         tgi: { type: String },
         type: { type: String },
-        
+
         ipfs: {
             logo: {
                 type: String
