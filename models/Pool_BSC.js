@@ -63,6 +63,12 @@ const Pool_BSCSchema = new Schema(
         endDateTime: {
             type: Date,
         },
+        fcfsStartDateTime: {
+            type: Date,
+        },
+        fcfsEndDateTime: {
+            type: Date,
+        },
         listDateTime: {
             type: Date,
         },

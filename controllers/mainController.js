@@ -91,11 +91,11 @@ exports.getCountForTierLevel = async (req, res) => {
         var level3_amount = 3000;
         var level4_amount = 4000;
 
-        let level0 = await UserStakings.count({ staking_address, staked_amount: { $lt: level1_amount } });
-        let level1 = await UserStakings.count({ staking_address, staked_amount: { $gte: level1_amount, $lt: level2_amount } });
-        let level2 = await UserStakings.count({ staking_address, staked_amount: { $gte: level2_amount, $lt: level3_amount } });
-        let level3 = await UserStakings.count({ staking_address, staked_amount: { $gte: level3_amount, $lt: level4_amount } });
-        let level4 = await UserStakings.count({ staking_address, staked_amount: { $gte: level4_amount } });
+        let level0 = await UserStakings.countDocuments({ staking_address, staked_amount: { $lt: level1_amount } });
+        let level1 = await UserStakings.countDocuments({ staking_address, staked_amount: { $gte: level1_amount, $lt: level2_amount } });
+        let level2 = await UserStakings.countDocuments({ staking_address, staked_amount: { $gte: level2_amount, $lt: level3_amount } });
+        let level3 = await UserStakings.countDocuments({ staking_address, staked_amount: { $gte: level3_amount, $lt: level4_amount } });
+        let level4 = await UserStakings.countDocuments({ staking_address, staked_amount: { $gte: level4_amount } });
 
         return res.json({ result: true, data: [level0, level1, level2, level3, level4], message: 'count of each tier level' })
 
@@ -350,9 +350,11 @@ exports.getToken = async (req, res) => {
 
 
 exports.createBSCIDO = async (req, res) => {
-    const { poolOwner, model, details, vesting, poolPercentFee, poolAddress, descriptions, logo,
-        projectName, deal, poster, category, blockchain, tgi, type, 
-        whitelistAddresses, whitelistMaxDeposit
+    const { poolOwner, model, vesting, poolPercentFee, poolAddress, descriptions, logo,
+        projectName, deal, poster, category, blockchain, tgi, type,
+        whitelistAddresses, whitelistMaxDeposit,
+        startDateTime, endDateTime, fcfsStartDateTime, fcfsEndDateTime, listDateTime,
+        minAllocationPerUser, maxAllocationPerUser, whitelistable, extraData, projectTokenAddress, dexLockup
     } = req.body;
     const {
         description,
@@ -377,27 +379,14 @@ exports.createBSCIDO = async (req, res) => {
         let presaleRate = model[2]
         let dexCapPercent = model[3]
         let dexRate = model[4]
-        let projectTokenAddress = model[6]
         let status = "online" // not found
         let tier = model[5]
         let kyc = false // not found
 
-        let startDateTime = details[0]
-        let endDateTime = details[1]
-        let listDateTime = details[2]
-        let minAllocationPerUser = details[3]
-        let maxAllocationPerUser = details[4]
-        let dexLockup = details[5]
-        let extraData = details[7]
-        // refund=details[0]
-        let whitelistable = details[6]
         let audit = false
         let auditLink = "auditLink"
 
 
-        startDateTime = startDateTime * 1000;
-        endDateTime = endDateTime * 1000;
-        listDateTime = listDateTime * 1000;
         // const erc20_contract = new ethers.Contract(
         //     projectTokenAddress,
         //     erc20_abi,
@@ -424,15 +413,15 @@ exports.createBSCIDO = async (req, res) => {
         unlockedVestingAmount = formatUnits(unlockedVestingAmount, decimals);
         presaleRate = formatUnits(presaleRate, decimals);
         dexRate = formatUnits(dexRate, decimals);
-        minAllocationPerUser = formatEther(minAllocationPerUser);
-        maxAllocationPerUser = formatEther(maxAllocationPerUser);
+
+
         // const symbol = await erc20_contract.symbol();
         const symbol = 'BUSD';
         // const name = await erc20_contract.name();
         const name = 'BUSD';
-        
+
         const participantsAddresses = [];
-        const whiteLists = whitelistAddresses.split(/\r?\n/).filter(Boolean);      
+        const whiteLists = whitelistAddresses.split(/\r?\n/).filter(Boolean);
 
         try {
             let response_ipfs;
@@ -455,11 +444,8 @@ exports.createBSCIDO = async (req, res) => {
             status,
             tier,
             kyc,
-            startDateTime,
-            endDateTime,
-            listDateTime,
-            minAllocationPerUser: minAllocationPerUser,
-            maxAllocationPerUser: maxAllocationPerUser,
+            startDateTime, endDateTime, fcfsStartDateTime, fcfsEndDateTime, listDateTime,
+            minAllocationPerUser, maxAllocationPerUser,
             dexLockup,
             extraData,
             ipfs,
