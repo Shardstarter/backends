@@ -9,6 +9,9 @@ const mschema = new Schema(
 		email: {
 			type: String,
 		},
+		nonevm: {
+			type: String,
+		},
 	},
 	{
 		timestamps: true,

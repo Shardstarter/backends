@@ -24,6 +24,15 @@ const mschema = new Schema(
 		discord: {
 			type: String,
 		},
+		whitepaper: {
+			type: String,
+		},
+		pitchdeck: {
+			type: String,
+		},
+		audit: {
+			type: String,
+		},
 		participants: [
 			{
 				wallet_address: String,

@@ -611,6 +611,25 @@ exports.setUserEmail = async (req, res) => {
         return res.json({ result: false, message: error.message })
     }
 };
+exports.setUserNonEVM = async (req, res) => {
+    try {
+        var { wallet_address, nonevm } = req.body
+
+        if (!wallet_address) return res.json({ result: false, message: 'Wallet address is required.' })
+        let existing = await UserInfo.findOne({ wallet_address })
+        if (existing) {
+            existing.nonevm = nonevm;
+            await existing.save();
+            return res.json({ result: true, data: 'done' })
+        } else {
+            await new UserInfo({ wallet_address, email }).save();
+            return res.json({ result: true, data: 'done' })
+        }
+
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
 exports.getUserParticipations = async (req, res) => {
     try {
         var { wallet_address } = req.body
@@ -623,6 +642,8 @@ exports.getUserParticipations = async (req, res) => {
             if (pool) {
                 row.projectName = pool.projectName;
                 row.deal = pool.deal;
+                row.logo = pool.logo;
+                row.presaleRate = pool.presaleRate;
             }
 
             return 1;
@@ -638,10 +659,11 @@ exports.getUserParticipations = async (req, res) => {
 /** Vote */
 exports.createVote = async (req, res) => {
     try {
-        var { projectName, logo, ticker, website, telegram, twitter, discord } = req.body
+        var { projectName, logo, ticker, website, telegram, twitter, discord,
+            whitepaper, pitchdeck, audit } = req.body
 
         await Vote.create({
-            projectName, logo, ticker, website, telegram, twitter, discord
+            projectName, logo, ticker, website, telegram, twitter, discord, whitepaper, pitchdeck, audit
         });
         return res.json({ result: true, data: 'done' })
     } catch (error) {

@@ -42,6 +42,7 @@ router.post('/vote/place', mainController.placeVote); //user, place yes or no
 
 router.post('/user/getInfo', mainController.getUserInfo); //userinfo
 router.post('/user/setEmail', mainController.setUserEmail); //userinfo
+router.post('/user/setNonEVM', mainController.setUserNonEVM); //userinfo
 router.post('/user/getParticipations', mainController.getUserParticipations); //get status of IDO deal participation
 
 router.post('/card/create', mainController.createCards); //admin create cards
