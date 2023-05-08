@@ -44,6 +44,9 @@ router.post('/user/getInfo', mainController.getUserInfo); //userinfo
 router.post('/user/setEmail', mainController.setUserEmail); //userinfo
 router.post('/user/getParticipations', mainController.getUserParticipations); //get status of IDO deal participation
 
+router.post('/card/create', mainController.createCards); //admin create cards
+router.post('/card/get', mainController.getCards); //homepage, get cards
+
 router.post('/ping', mainController.ping);
 router.post('/temp', mainController.temp); 
 module.exports = router;

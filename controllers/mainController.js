@@ -8,6 +8,7 @@ const UserStakings = require("../models/UserStakings");
 const UserInfo = require("../models/UserInfo");
 const UserDealStatus = require("../models/UserDealStatus");
 const Vote = require("../models/Vote");
+const Card = require("../models/Card");
 const webpush = require("web-push");
 const ethers = require("ethers");
 const erc20_abi = require("../abi/erc20.json");
@@ -674,6 +675,35 @@ exports.placeVote = async (req, res) => {
         await record.save();
 
         return res.json({ result: true, data: 'done', })
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
+
+
+/** Cards */
+exports.createCards = async (req, res) => {
+    try {
+        var { cards } = req.body
+        await Card.deleteMany({});
+        const promises = cards.map(async (card) => {
+            const result = await Card.create(card);
+            return result;
+        });
+        const results = await Promise.all(promises)
+        console.log(results);
+
+        return res.json({ result: true, data: 'done' })
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
+
+exports.getCards = async (req, res) => {
+    try {
+        var { } = req.body
+        var records = await Card.find({});
+        return res.json({ result: true, data: records, })
     } catch (error) {
         return res.json({ result: false, message: error.message })
     }
