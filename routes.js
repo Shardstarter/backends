@@ -35,6 +35,7 @@ router.post('/update-user-deposit', mainController.updateUserDeposit); //update 
 router.post('/approval/set', mainController.setApproval); // user approves for pool
 router.post('/approval/get', mainController.getApproval); //get  user approval status
 router.post('/approval/count', mainController.countApproval); //count deal approvals
+router.post('/ido/delete', mainController.deleteIDO); //admin - delete pool
 
 router.post('/vote/create', mainController.createVote); //admin create vote
 router.post('/vote/get', mainController.getVotes); //user, get vote list

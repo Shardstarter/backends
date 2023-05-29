@@ -582,6 +582,18 @@ exports.countApproval = async (req, res) => {
     }
 };
 
+exports.deleteIDO = async (req, res) => {
+    try {
+        var { pool_address } = req.body
+        await Pool_BSC.deleteMany({
+            address: pool_address,
+        });
+        return res.json({ result: true, data: 'success', message: 'pool removed' })
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
+
 /** User info */
 exports.getUserInfo = async (req, res) => {
     try {
