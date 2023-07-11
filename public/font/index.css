@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Madani Arabic';
+  font-weight: 300;
+  font-style: normal;
+  src: local('Madani Arabic'), url('Madani-Arabic-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Madani Arabic';
+  font-weight: 600;
+  font-style: normal;
+  src: local('Madani Arabic'), url('Madani-Arabic-Semi-Bold.ttf') format('truetype');
+}

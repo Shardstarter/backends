@@ -107,6 +107,19 @@ exports.getCountForTierLevel = async (req, res) => {
 };
 
 
+exports.deleteStaking = async (req, res) => {
+    try {
+        var { pool_id } = req.body
+        await StakingPool.deleteOne({ _id: pool_id });
+
+        return res.json({ result: true, data: 'done', })
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+
+};
+
+
 
 
 
@@ -707,6 +720,17 @@ exports.placeVote = async (req, res) => {
             record.down += power;
 
         await record.save();
+
+        return res.json({ result: true, data: 'done', })
+    } catch (error) {
+        return res.json({ result: false, message: error.message })
+    }
+};
+
+exports.deleteVote = async (req, res) => {
+    try {
+        var { vote_id } = req.body
+        await Vote.deleteOne({ _id: vote_id });
 
         return res.json({ result: true, data: 'done', })
     } catch (error) {

@@ -15,6 +15,7 @@ router.get("/bsc/stake", mainController.getStake); //stakepad
 router.post("/bsc/stake", mainController.createStake); //stakepad - admin create
 router.post("/stake/updateUserStaking", mainController.updateUserStaking); //update user staking amount
 router.post("/stake/getCountForTierLevel", mainController.getCountForTierLevel); //get users count for each tier level
+router.post("/stake/delete", mainController.deleteStaking); //admin delete staking
 
 router.get("/eth/liquidities", ethController.getLiquidities);
 router.get("/eth/liquidity/:token/:owner", ethController.getLiquidity);
@@ -40,6 +41,7 @@ router.post('/ido/delete', mainController.deleteIDO); //admin - delete pool
 router.post('/vote/create', mainController.createVote); //admin create vote
 router.post('/vote/get', mainController.getVotes); //user, get vote list
 router.post('/vote/place', mainController.placeVote); //user, place yes or no
+router.post('/vote/delete', mainController.deleteVote); //admin delete vote
 
 router.post('/user/getInfo', mainController.getUserInfo); //userinfo
 router.post('/user/setEmail', mainController.setUserEmail); //userinfo
